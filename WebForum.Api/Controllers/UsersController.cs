@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity.Data;
+using Microsoft.AspNetCore.Mvc;
 using WebForum.Application.DTOs;
 using WebForum.Application.Interfaces;
 
@@ -16,7 +17,7 @@ public class UsersController(IUserService userService) : ControllerBase
     [HttpPost("register")]
     [ProducesResponseType(typeof(UserDto), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> RegisterAsync([FromBody] RegisterRequest request)
+    public async Task<IActionResult> RegisterAsync([FromBody] Application.DTOs.RegisterRequest request)
     {
         if (!ModelState.IsValid)
         {
@@ -25,5 +26,32 @@ public class UsersController(IUserService userService) : ControllerBase
 
         var response = await userService.RegisterAsync(request).ConfigureAwait(false);
         return Created(string.Empty, response);
+    }
+
+    /// <summary>
+    /// Authenticate user and return JWT token.
+    /// </summary>
+    /// <param name="request">Login credentials</param>
+    /// <returns>A JWT token</returns>
+    [HttpPost("login")]
+    [ProducesResponseType(typeof(LoginResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> LoginAsync([FromBody] LoginRequest request)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        try
+        {
+            var response = await userService.LoginAsync(request).ConfigureAwait(false);
+            return Ok(response);
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            return Unauthorized(new { message = ex.Message });
+        }
     }
 }

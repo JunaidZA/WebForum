@@ -7,7 +7,7 @@ public interface IPostService
     /// <summary>
     /// Fetches all posts.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>A list of <see cref="PostDto"/></returns>
     Task<IEnumerable<PostDto>> GetPostsAsync();
 
     /// <summary>
@@ -16,6 +16,39 @@ public interface IPostService
     /// <param name="title"></param>
     /// <param name="body"></param>
     /// <param name="userId"></param>
-    /// <returns></returns>
+    /// <returns>The created <see cref="PostDto"/></returns>
     Task<PostDto> CreatePostAsync(string title, string body, Guid userId);
+
+    /// <summary>
+    /// Adds a comment to a post.
+    /// </summary>
+    /// <param name="postId"></param>
+    /// <param name="request"></param>
+    /// <param name="userId"></param>
+    /// <returns></returns>
+    Task AddCommentAsync(Guid postId, CreateCommentRequest request, Guid userId);
+
+    /// <summary>
+    /// Adds a like to a post.
+    /// </summary>
+    /// <param name="postId"></param>
+    /// <param name="userId"></param>
+    /// <returns></returns>
+    Task AddLikeAsync(Guid postId, Guid userId);
+
+    /// <summary>
+    /// Removes a like from a post.
+    /// </summary>
+    /// <param name="postId"></param>
+    /// <param name="userId"></param>
+    /// <returns></returns>
+    Task RemoveLikeAsync(Guid postId, Guid userId);
+
+    /// <summary>
+    /// Adds a tag to a post.
+    /// </summary>
+    /// <param name="postId"></param>
+    /// <param name="request"></param>
+    /// <returns></returns>
+    Task AddTagToPostAsync(Guid postId, AddTagToPostRequest request);
 }

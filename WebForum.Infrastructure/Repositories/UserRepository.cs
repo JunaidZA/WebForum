@@ -20,4 +20,18 @@ public class UserRepository(WebForumDbContext context) : IUserRepository
         await context.SaveChangesAsync().ConfigureAwait(false);
         return user;
     }
+
+    public async Task<User?> GetByEmailAsync(string email)
+    {
+        return await context.Users
+            .FirstOrDefaultAsync(u => u.Email.ToLower() == email.ToLower())
+            .ConfigureAwait(false);
+    }
+
+    public async Task<User?> GetByUsernameAsync(string username)
+    {
+        return await context.Users
+            .FirstOrDefaultAsync(u => u.Username.ToLower() == username.ToLower())
+            .ConfigureAwait(false);
+    }
 }

@@ -14,7 +14,9 @@ public static class PostConverter
             Body = post.Body,
             Likes = post.LikeCount,
             CreatedAtUtc = post.CreatedAtUtc,
-            Author = post.UserId
+            Author = post.User.Username,
+            Comments = post.Comments?.Select(CommentConverter.MapToDto).ToList() ?? [],
+            Tags = post.Tags?.Select(TagConverter.MapToDto).ToList() ?? []
         };
     }
 }

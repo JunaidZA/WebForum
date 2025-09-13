@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using System.Reflection.Emit;
-using System.Reflection.Metadata;
 using WebForum.Domain.Entities;
 
 namespace WebForum.Infrastructure.Context;
@@ -34,6 +32,11 @@ public class WebForumDbContext : DbContext
         modelBuilder.Entity<Post>()
             .Property(b => b.Title)
             .HasMaxLength(100);
+
+        modelBuilder.Entity<Post>()
+            .HasOne(p => p.User)
+            .WithMany(u => u.Posts)
+            .HasForeignKey(p => p.UserId);
 
         // User
         modelBuilder.Entity<User>()
@@ -94,8 +97,7 @@ public class WebForumDbContext : DbContext
                                                                             || p.PropertyType == typeof(DateTimeOffset?));
                 foreach (var property in properties)
                 {
-                    modelBuilder
-                        .Entity(entityType.Name)
+                    modelBuilder.Entity(entityType.Name)
                         .Property(property.Name)
                         .HasConversion(new DateTimeOffsetToBinaryConverter());
                 }
