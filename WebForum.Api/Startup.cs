@@ -1,9 +1,14 @@
-﻿namespace WebForum.Api;
+﻿using WebForum.Application.Interfaces;
+using WebForum.Application.Services;
+
+namespace WebForum.Api;
 
 public class Startup(IConfiguration configuration)
 {
     public void ConfigureServices(IServiceCollection services)
     {
+        services.AddScoped<IPostService, PostService>();
+
         services.AddControllers();
         services.AddOpenApi();
         services.AddEndpointsApiExplorer();
@@ -25,6 +30,7 @@ public class Startup(IConfiguration configuration)
         }
 
         app.UseHttpsRedirection();
+
         app.UseRouting();
 
         app.UseAuthorization();
