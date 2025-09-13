@@ -1,5 +1,9 @@
-﻿using WebForum.Application.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using WebForum.Application.Interfaces;
 using WebForum.Application.Services;
+using WebForum.Domain.Interfaces;
+using WebForum.Infrastructure.Context;
+using WebForum.Infrastructure.Repositories;
 
 namespace WebForum.Api;
 
@@ -7,6 +11,11 @@ public class Startup(IConfiguration configuration)
 {
     public void ConfigureServices(IServiceCollection services)
     {
+        var connectionString = configuration.GetConnectionString("DefaultConnection");
+        services.AddDbContext<WebForumDbContext>(options => options.UseSqlite(connectionString));
+
+        services.AddScoped<IPostRepository, PostRepository>();
+
         services.AddScoped<IPostService, PostService>();
 
         services.AddControllers();
@@ -27,6 +36,12 @@ public class Startup(IConfiguration configuration)
         {
             app.UseExceptionHandler("/Home/Error");
             app.UseHsts();
+        }
+
+        using (var scope = app.ApplicationServices.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<WebForumDbContext>();
+            db.Database.Migrate();
         }
 
         app.UseHttpsRedirection();

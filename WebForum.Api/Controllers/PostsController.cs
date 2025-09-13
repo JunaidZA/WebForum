@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WebForum.Application.DTOs;
 using WebForum.Application.Interfaces;
+using WebForum.Domain.Entities;
 
 namespace WebForum.Api.Controllers;
 
@@ -21,13 +22,14 @@ public class PostsController(IPostService postService) : ControllerBase
     }
 
     /// <summary>
-    /// Adds a new post.
+    /// Creates a new post.
     /// </summary>
     /// <returns>The created <see cref="Post"/></returns>
-    [HttpPost(Name = "AddPost")]
+    [HttpPost(Name = "CreatePost")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> AddPostAsync()
+    public async Task<IActionResult> CreatePostAsync([FromBody] CreatePostRequest request)
     {
+        var post = await postService.CreatePostAsync(request.Title, request.Body, Guid.NewGuid()).ConfigureAwait(false);
         return NoContent();
     }
 
