@@ -15,8 +15,10 @@ public class Startup(IConfiguration configuration)
         services.AddDbContext<WebForumDbContext>(options => options.UseSqlite(connectionString));
 
         services.AddScoped<IPostRepository, PostRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
 
         services.AddScoped<IPostService, PostService>();
+        services.AddScoped<IUserService, UserService>();
 
         services.AddControllers();
         services.AddOpenApi();

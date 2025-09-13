@@ -20,7 +20,8 @@ public class PostService(IPostRepository postRepository) : IPostService
         {
             Title = title,
             Body = body,
-            UserId = userId
+            UserId = userId,
+            CreatedAtUtc = DateTime.UtcNow
         };
 
         var createdPost = await postRepository.CreatePostAsync(post).ConfigureAwait(false);

@@ -10,5 +10,7 @@ public record PostDto
 
     public int Likes { get; set; }
 
+    public Guid Author { get; set; }
+
     public DateTimeOffset CreatedAtUtc { get; set; }
 }

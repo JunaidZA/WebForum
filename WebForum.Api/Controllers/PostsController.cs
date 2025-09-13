@@ -29,7 +29,7 @@ public class PostsController(IPostService postService) : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> CreatePostAsync([FromBody] CreatePostRequest request)
     {
-        var post = await postService.CreatePostAsync(request.Title, request.Body, Guid.NewGuid()).ConfigureAwait(false);
+        var post = await postService.CreatePostAsync(request.Title, request.Body, request.UserId).ConfigureAwait(false);
         return NoContent();
     }
 

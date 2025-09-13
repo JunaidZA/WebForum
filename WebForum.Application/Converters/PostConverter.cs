@@ -13,7 +13,8 @@ public static class PostConverter
             Title = post.Title,
             Body = post.Body,
             Likes = post.LikeCount,
-            CreatedAtUtc = post.CreatedAtUtc
+            CreatedAtUtc = post.CreatedAtUtc,
+            Author = post.UserId
         };
     }
 }
