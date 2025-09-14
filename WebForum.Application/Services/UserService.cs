@@ -9,6 +9,7 @@ using WebForum.Application.DTOs;
 using WebForum.Application.Interfaces;
 using WebForum.Domain.Entities;
 using WebForum.Domain.Interfaces;
+using LoginRequest = WebForum.Application.DTOs.LoginRequest;
 using RegisterRequest = WebForum.Application.DTOs.RegisterRequest;
 
 namespace WebForum.Application.Services;
@@ -75,7 +76,7 @@ public class UserService(IUserRepository userRepository, IConfiguration configur
         };
     }
 
-    private string GenerateToken(User user)
+    public string GenerateToken(User user)
     {
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secretKey));
         var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

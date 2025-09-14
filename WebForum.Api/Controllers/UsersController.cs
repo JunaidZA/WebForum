@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity.Data;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using WebForum.Application.DTOs;
 using WebForum.Application.Interfaces;
+using LoginRequest = WebForum.Application.DTOs.LoginRequest;
 
 namespace WebForum.Api.Controllers;
 
