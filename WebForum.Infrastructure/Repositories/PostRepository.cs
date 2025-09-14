@@ -12,7 +12,6 @@ public class PostRepository(WebForumDbContext context) : IPostRepository
         return await context.Posts
             .Include(p => p.User)
             .Include(p => p.Comments)
-            .ThenInclude(c => c.User)
             .Include(p => p.Tags)
             .Include(p => p.Likes)
             .OrderByDescending(p => p.CreatedAtUtc)
@@ -32,7 +31,6 @@ public class PostRepository(WebForumDbContext context) : IPostRepository
         var query = context.Posts
             .Include(p => p.User)
             .Include(p => p.Comments)
-            .ThenInclude(c => c.User)
             .Include(p => p.Tags)
             .Include(p => p.Likes)
             .AsQueryable();
@@ -83,13 +81,7 @@ public class PostRepository(WebForumDbContext context) : IPostRepository
 
     public async Task<Post?> GetPostByIdAsync(Guid id)
     {
-        return await context.Posts
-            .Include(p => p.User)
-            .Include(p => p.Comments)
-            .ThenInclude(c => c.User)
-            .Include(p => p.Tags)
-            .Include(p => p.Likes)
-            .FirstOrDefaultAsync(p => p.Id == id).ConfigureAwait(false);
+        return await context.Posts.FirstOrDefaultAsync(p => p.Id == id).ConfigureAwait(false);
     }
 
     public async Task<Post> CreatePostAsync(Post post)

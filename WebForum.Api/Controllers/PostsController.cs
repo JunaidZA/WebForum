@@ -17,7 +17,6 @@ public class PostsController(IPostService postService) : ControllerBase
     /// <param name="postRequestFilter">Filter, pagination and sort parameters</param>
     /// <returns>A paged result of <see cref="PostDto"/></returns>
     [HttpGet(Name = "GetPosts")]
-    [ProducesResponseType(typeof(IEnumerable<PostDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(PagedResult<PostDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> GetPostsAsync([FromQuery] PostFilterRequest postFilterRequest)
@@ -37,7 +36,7 @@ public class PostsController(IPostService postService) : ControllerBase
     /// <returns>The created <see cref="Post"/></returns>
     [HttpPost(Name = "CreatePost")]
     [Authorize]
-    [ProducesResponseType(typeof(PostDto), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> CreatePostAsync([FromBody] CreatePostRequest createPostRequest)
@@ -56,7 +55,7 @@ public class PostsController(IPostService postService) : ControllerBase
             }
 
             var post = await postService.CreatePostAsync(createPostRequest.Title, createPostRequest.Body, (Guid)userId).ConfigureAwait(false);
-            return NoContent();
+            return Created();
         }
         catch (UnauthorizedAccessException ex)
         {
@@ -75,7 +74,7 @@ public class PostsController(IPostService postService) : ControllerBase
     /// <returns></returns>
     [HttpPost("{postId:guid}/comments", Name = "AddComment")]
     [Authorize]
-    [ProducesResponseType(typeof(CommentDto), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> AddCommentToPostAsync([FromRoute] Guid postId, [FromBody] CreateCommentRequest createCommentRequest)
@@ -93,7 +92,7 @@ public class PostsController(IPostService postService) : ControllerBase
                 throw new UnauthorizedAccessException("User is not authenticated or user ID is invalid");
             }
             await postService.AddCommentAsync(postId, createCommentRequest, (Guid)userId).ConfigureAwait(false);
-            return NoContent();
+            return Created();
         }
         catch (UnauthorizedAccessException ex)
         {
@@ -179,7 +178,7 @@ public class PostsController(IPostService postService) : ControllerBase
     }
 
     /// <summary>
-    /// Adds a like to a post.
+    /// Adds a tag to a post.
     /// Moderator action.
     /// </summary>
     /// <param name="postId">The ID of the post to add a tag to.</param>
