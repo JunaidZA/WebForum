@@ -19,6 +19,68 @@ public class PostRepository(WebForumDbContext context) : IPostRepository
             .ToListAsync().ConfigureAwait(false);
     }
 
+    public async Task<(IEnumerable<Post> Posts, long TotalCount)> GetPostsAsync(
+        int page,
+        int pageSize,
+        string? author = null,
+        IEnumerable<string>? tags = null,
+        DateTimeOffset? fromDate = null,
+        DateTimeOffset? toDate = null,
+        string sortBy = "CreatedDate",
+        bool sortDescending = true)
+    {
+        var query = context.Posts
+            .Include(p => p.User)
+            .Include(p => p.Comments)
+            .ThenInclude(c => c.User)
+            .Include(p => p.Tags)
+            .Include(p => p.Likes)
+            .AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(author))
+        {
+            query = query.Where(p => p.User != null && p.User.Username.ToLower().Contains(author.ToLower()));
+        }
+
+        if (tags != null && tags.Any())
+        {
+            var tagList = tags.ToList();
+            query = query.Where(p => p.Tags.Any(t => tagList.Contains(t.Name)));
+        }
+
+        if (fromDate.HasValue)
+        {
+            query = query.Where(p => p.CreatedAtUtc >= fromDate.Value);
+        }
+
+        if (toDate.HasValue)
+        {
+            query = query.Where(p => p.CreatedAtUtc <= toDate.Value);
+        }
+
+        query = sortBy.ToLowerInvariant() switch
+        {
+            "likes" => sortDescending
+                ? query.OrderByDescending(p => p.LikeCount).ThenByDescending(p => p.CreatedAtUtc)
+                : query.OrderBy(p => p.LikeCount).ThenBy(p => p.CreatedAtUtc),
+            "title" => sortDescending
+                ? query.OrderByDescending(p => p.Title).ThenByDescending(p => p.CreatedAtUtc)
+                : query.OrderBy(p => p.Title).ThenBy(p => p.CreatedAtUtc),
+            _ => sortDescending
+                ? query.OrderByDescending(p => p.CreatedAtUtc)
+                : query.OrderBy(p => p.CreatedAtUtc)
+        };
+
+        var totalCount = await query.CountAsync().ConfigureAwait(false);
+
+        var posts = await query
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync().ConfigureAwait(false);
+
+        return (posts, totalCount);
+    }
+
     public async Task<Post?> GetPostByIdAsync(Guid id)
     {
         return await context.Posts

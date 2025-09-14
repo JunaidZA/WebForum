@@ -11,6 +11,13 @@ public interface IPostService
     Task<IEnumerable<PostDto>> GetPostsAsync();
 
     /// <summary>
+    /// Fetches posts with filtering, sorting, and pagination.
+    /// </summary>
+    /// <param name="filter"></param>
+    /// <returns></returns>
+    Task<PagedResult<PostDto>> GetPostsAsync(PostFilterRequest filter);
+
+    /// <summary>
     /// Creates a new post.
     /// </summary>
     /// <param name="title"></param>

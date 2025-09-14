@@ -14,6 +14,44 @@ public class PostService(IPostRepository postRepository, IUserRepository userRep
         return posts.Select(PostConverter.MapToDto);
     }
 
+    public async Task<PagedResult<PostDto>> GetPostsAsync(PostFilterRequest postFilterRequest)
+    {
+        IEnumerable<string>? tags = null;
+        if (!string.IsNullOrWhiteSpace(postFilterRequest.Tags))
+        {
+            tags = postFilterRequest.Tags.Split(',', StringSplitOptions.RemoveEmptyEntries)
+                              .Select(t => t.Trim())
+                              .Where(t => !string.IsNullOrEmpty(t));
+        }
+
+        var sortBy = postFilterRequest.SortBy switch
+        {
+            PostSortField.Likes => "Likes",
+            _ => "CreatedDate"
+        };
+
+        var sortDescending = postFilterRequest.SortDirection == SortDirection.Desc;
+        var (posts, totalCount) = await postRepository.GetPostsAsync(
+            postFilterRequest.Page,
+            postFilterRequest.PageSize,
+            postFilterRequest.Author,
+            tags,
+            postFilterRequest.FromDate,
+            postFilterRequest.ToDate,
+            sortBy,
+            sortDescending).ConfigureAwait(false);
+
+        var postDtos = posts.Select(PostConverter.MapToDto);
+
+        return new PagedResult<PostDto>
+        {
+            Items = postDtos,
+            Page = postFilterRequest.Page,
+            PageSize = postFilterRequest.PageSize,
+            TotalCount = totalCount
+        };
+    }
+
     public async Task<PostDto> CreatePostAsync(string title, string body, Guid userId)
     {
         var user = await userRepository.GetByIdAsync(userId).ConfigureAwait(false);
@@ -119,7 +157,7 @@ public class PostService(IPostRepository postRepository, IUserRepository userRep
         _ = await postRepository.UpdatePostAsync(post).ConfigureAwait(false);
     }
 
-    public async Task AddTagToPostAsync(Guid postId, AddTagToPostRequest request)
+    public async Task AddTagToPostAsync(Guid postId, AddTagToPostRequest addTagToPostRequest)
     {
         var post = await postRepository.GetPostByIdAsync(postId).ConfigureAwait(false);
         if (post == null)
@@ -127,7 +165,7 @@ public class PostService(IPostRepository postRepository, IUserRepository userRep
             throw new ArgumentException("Post not found", nameof(postId));
         }
 
-        var existingTag = await tagRepository.GetByNameAsync(request.TagName).ConfigureAwait(false);
+        var existingTag = await tagRepository.GetByNameAsync(addTagToPostRequest.TagName).ConfigureAwait(false);
         if (existingTag != null)
         {
             if (!post.Tags.Any(t => t.Id == existingTag.Id))
@@ -138,7 +176,7 @@ public class PostService(IPostRepository postRepository, IUserRepository userRep
         }
         else
         {
-            var tagToCreate = new Tag { Name = request.TagName };
+            var tagToCreate = new Tag { Name = addTagToPostRequest.TagName };
             var createdTag = await tagRepository.CreateAsync(tagToCreate).ConfigureAwait(false);
             post.Tags.Add(createdTag);
             _ = await postRepository.UpdatePostAsync(post).ConfigureAwait(false);

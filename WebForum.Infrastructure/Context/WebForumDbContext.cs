@@ -50,6 +50,10 @@ public class WebForumDbContext : DbContext
             .HasIndex(u => u.Username)
             .IsUnique();
 
+        modelBuilder.Entity<User>()
+            .Property(t => t.Username)
+            .HasColumnType("TEXT COLLATE NOCASE");
+
         // Comment
         modelBuilder.Entity<Comment>()
             .HasKey(u => u.Id);
@@ -82,9 +86,14 @@ public class WebForumDbContext : DbContext
         modelBuilder.Entity<Tag>()
             .HasKey(u => u.Id);
 
+        modelBuilder.Entity<Tag>()
+            .Property(t => t.Name)
+            .HasColumnType("TEXT COLLATE NOCASE");
+
 
         if (Database.ProviderName == "Microsoft.EntityFrameworkCore.Sqlite")
         {
+            // From: https://stackoverflow.com/questions/76149300/ef-core-can-not-handle-datetimeoffset-when-using-an-sqlite-connection
             // SQLite does not have proper support for DateTimeOffset via Entity Framework Core, see the limitations
             // here: https://docs.microsoft.com/en-us/ef/core/providers/sqlite/limitations#query-limitations
             // To work around this, when the Sqlite database provider is used, all model properties of type DateTimeOffset

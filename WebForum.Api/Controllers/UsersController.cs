@@ -19,6 +19,7 @@ public class UsersController(IUserService userService) : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> RegisterAsync([FromBody] Application.DTOs.RegisterRequest request)
     {
+        // Normally would not allow a user to set their own role during registration. But this is easier for testing.
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);

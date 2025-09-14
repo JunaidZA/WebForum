@@ -12,15 +12,23 @@ namespace WebForum.Api.Controllers;
 public class PostsController(IPostService postService) : ControllerBase
 {
     /// <summary>
-    /// Gets all posts.
+    /// Gets all posts with optional filtering, sorting, and paging support.
     /// </summary>
-    /// <returns>A list of <see cref="PostDto"/></returns>
+    /// <param name="postRequestFilter">Filter, pagination and sort parameters</param>
+    /// <returns>A paged result of <see cref="PostDto"/></returns>
     [HttpGet(Name = "GetPosts")]
-    [ProducesResponseType(typeof(PostDto), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetPostsAsync() //TODO: Add filters etc
+    [ProducesResponseType(typeof(IEnumerable<PostDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(PagedResult<PostDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> GetPostsAsync([FromQuery] PostFilterRequest postFilterRequest)
     {
-        var posts = await postService.GetPostsAsync().ConfigureAwait(false);
-        return Ok(posts);
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        var result = await postService.GetPostsAsync(postFilterRequest).ConfigureAwait(false);
+        return Ok(result);
     }
 
     /// <summary>
@@ -32,7 +40,7 @@ public class PostsController(IPostService postService) : ControllerBase
     [ProducesResponseType(typeof(PostDto), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<IActionResult> CreatePostAsync([FromBody] CreatePostRequest request)
+    public async Task<IActionResult> CreatePostAsync([FromBody] CreatePostRequest createPostRequest)
     {
         if (!ModelState.IsValid)
         {
@@ -47,7 +55,7 @@ public class PostsController(IPostService postService) : ControllerBase
                 throw new UnauthorizedAccessException("User is not authenticated or user ID is invalid");
             }
 
-            var post = await postService.CreatePostAsync(request.Title, request.Body, (Guid)userId).ConfigureAwait(false);
+            var post = await postService.CreatePostAsync(createPostRequest.Title, createPostRequest.Body, (Guid)userId).ConfigureAwait(false);
             return NoContent();
         }
         catch (UnauthorizedAccessException ex)
@@ -70,7 +78,7 @@ public class PostsController(IPostService postService) : ControllerBase
     [ProducesResponseType(typeof(CommentDto), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> AddCommentToPostAsync([FromRoute] Guid postId, [FromBody] CreateCommentRequest request)
+    public async Task<IActionResult> AddCommentToPostAsync([FromRoute] Guid postId, [FromBody] CreateCommentRequest createCommentRequest)
     {
         if (!ModelState.IsValid)
         {
@@ -84,7 +92,7 @@ public class PostsController(IPostService postService) : ControllerBase
             {
                 throw new UnauthorizedAccessException("User is not authenticated or user ID is invalid");
             }
-            await postService.AddCommentAsync(postId, request, (Guid)userId).ConfigureAwait(false);
+            await postService.AddCommentAsync(postId, createCommentRequest, (Guid)userId).ConfigureAwait(false);
             return NoContent();
         }
         catch (UnauthorizedAccessException ex)
@@ -181,7 +189,7 @@ public class PostsController(IPostService postService) : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> AddTagToPostAsync([FromRoute] Guid postId, [FromBody] AddTagToPostRequest request)
+    public async Task<IActionResult> AddTagToPostAsync([FromRoute] Guid postId, [FromBody] AddTagToPostRequest addTagToPostRequest)
     {
         if (!ModelState.IsValid)
         {
@@ -190,7 +198,7 @@ public class PostsController(IPostService postService) : ControllerBase
 
         try
         {
-            await postService.AddTagToPostAsync(postId, request).ConfigureAwait(false);
+            await postService.AddTagToPostAsync(postId, addTagToPostRequest).ConfigureAwait(false);
             return NoContent();
         }
         catch (ArgumentException ex)
