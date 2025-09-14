@@ -1,0 +1,892 @@
+{
+  "name": "WebForum",
+  "version": "1",
+  "items": [
+    {
+      "type": "folder",
+      "name": "Posts",
+      "filename": "Posts",
+      "seq": 4,
+      "root": {
+        "request": {
+          "auth": {
+            "mode": "bearer",
+            "bearer": {
+              "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjUzM2Y2YzdmLTU3MjktNDRhZS04YmRlLWJkZjRjOWVhYWE4YiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJKdW5haWQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJKdW5haWRAanVuYWlkLmNvLnphIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsInN1YiI6IjUzM2Y2YzdmLTU3MjktNDRhZS04YmRlLWJkZjRjOWVhYWE4YiIsImp0aSI6IjdlZjA2ZGEzLTE1YTUtNGExYy04MmEwLWZiZjRlYTUxNTExMCIsImlhdCI6MTc1Nzg2NjgxNSwiZXhwIjoxNzU3ODcwNDE1LCJpc3MiOiJXZWJGb3J1bUlzc3VlciIsImF1ZCI6IldlYkZvcnVtQXVkaWVuY2UifQ.9ojUK-wV82yzMrqBVegA7Q29d_MEiuo9gR4X5rDcMK4"
+            }
+          }
+        },
+        "meta": {
+          "name": "Posts",
+          "seq": 4
+        }
+      },
+      "items": [
+        {
+          "type": "http",
+          "name": "Add Comment",
+          "filename": "Add Comment.bru",
+          "seq": 7,
+          "settings": {
+            "encodeUrl": true
+          },
+          "tags": [],
+          "request": {
+            "url": "http://localhost:5091/api/posts/03c82bd4-00f7-4cc0-8e79-ddf89d82dbd8/comments",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"body\": \"commentbody\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Add Like",
+          "filename": "Add Like.bru",
+          "seq": 9,
+          "settings": {
+            "encodeUrl": true
+          },
+          "tags": [],
+          "request": {
+            "url": "http://localhost:5091/api/posts/2ee80ff7-5f5e-4a38-91f2-3a9a29b26d5f/likes",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Add Post",
+          "filename": "Add Post.bru",
+          "seq": 6,
+          "settings": {
+            "encodeUrl": true
+          },
+          "tags": [],
+          "request": {
+            "url": "http://localhost:5091/api/posts",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"title\": \"sadasd1\",\n  \"body\": \"stasdasdasring2\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Add Tag",
+          "filename": "Add Tag.bru",
+          "seq": 8,
+          "settings": {
+            "encodeUrl": true
+          },
+          "tags": [],
+          "request": {
+            "url": "http://localhost:5091/api/posts/2ee80ff7-5f5e-4a38-91f2-3a9a29b26d5f/tags",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"tagName\": \"tagname2\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Posts with date filter",
+          "filename": "Posts with date filter.bru",
+          "seq": 4,
+          "settings": {
+            "encodeUrl": true
+          },
+          "tags": [],
+          "request": {
+            "url": "http://localhost:5091/api/posts?fromDate=2025-09-12&toDate=2025-09-14",
+            "method": "GET",
+            "headers": [],
+            "params": [
+              {
+                "name": "fromDate",
+                "value": "2025-09-12",
+                "type": "query",
+                "enabled": true
+              },
+              {
+                "name": "toDate",
+                "value": "2025-09-14",
+                "type": "query",
+                "enabled": true
+              }
+            ],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Posts with filter",
+          "filename": "Posts with filter.bru",
+          "seq": 3,
+          "settings": {
+            "encodeUrl": true
+          },
+          "tags": [],
+          "request": {
+            "url": "http://localhost:5091/api/posts?page=1&pageSize=10&sortBy=Likes&sortDirection=Asc&author=MOD",
+            "method": "GET",
+            "headers": [],
+            "params": [
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "enabled": true
+              },
+              {
+                "name": "pageSize",
+                "value": "10",
+                "type": "query",
+                "enabled": true
+              },
+              {
+                "name": "sortBy",
+                "value": "Likes",
+                "type": "query",
+                "enabled": true
+              },
+              {
+                "name": "sortDirection",
+                "value": "Asc",
+                "type": "query",
+                "enabled": true
+              },
+              {
+                "name": "author",
+                "value": "MOD",
+                "type": "query",
+                "enabled": true
+              }
+            ],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Posts with paging",
+          "filename": "Posts with paging.bru",
+          "seq": 2,
+          "settings": {
+            "encodeUrl": true
+          },
+          "tags": [],
+          "request": {
+            "url": "http://localhost:5091/api/posts?page=1&pageSize=2",
+            "method": "GET",
+            "headers": [],
+            "params": [
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "enabled": true
+              },
+              {
+                "name": "pageSize",
+                "value": "2",
+                "type": "query",
+                "enabled": true
+              }
+            ],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Posts",
+          "filename": "Posts.bru",
+          "seq": 1,
+          "settings": {
+            "encodeUrl": true
+          },
+          "tags": [],
+          "request": {
+            "url": "http://localhost:5091/api/posts",
+            "method": "GET",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Unlike Post",
+          "filename": "Unlike Post.bru",
+          "seq": 10,
+          "settings": {
+            "encodeUrl": true
+          },
+          "tags": [],
+          "request": {
+            "url": "http://localhost:5091/api/posts/58953366-b3a7-4f80-9a1f-cde63fc6f58b/likes",
+            "method": "DELETE",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Posts with tag filter",
+          "filename": "Posts with tag filter.bru",
+          "seq": 5,
+          "settings": {
+            "encodeUrl": true
+          },
+          "tags": [],
+          "request": {
+            "url": "http://localhost:5091/api/posts?page=1&pageSize=10&sortBy=Likes&sortDirection=Asc",
+            "method": "GET",
+            "headers": [],
+            "params": [
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "enabled": true
+              },
+              {
+                "name": "pageSize",
+                "value": "10",
+                "type": "query",
+                "enabled": true
+              },
+              {
+                "name": "sortBy",
+                "value": "Likes",
+                "type": "query",
+                "enabled": true
+              },
+              {
+                "name": "sortDirection",
+                "value": "Asc",
+                "type": "query",
+                "enabled": true
+              },
+              {
+                "name": "Tags",
+                "value": "TAGname2",
+                "type": "query",
+                "enabled": false
+              },
+              {
+                "name": "author",
+                "value": "MOD",
+                "type": "query",
+                "enabled": false
+              }
+            ],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "folder",
+      "name": "Users",
+      "filename": "Users",
+      "seq": 2,
+      "root": {
+        "request": {
+          "auth": {
+            "mode": "inherit"
+          }
+        },
+        "meta": {
+          "name": "Users",
+          "seq": 2
+        }
+      },
+      "items": [
+        {
+          "type": "http",
+          "name": "Login as moderator",
+          "filename": "Login as moderator.bru",
+          "seq": 3,
+          "settings": {
+            "encodeUrl": true
+          },
+          "tags": [],
+          "request": {
+            "url": "http://localhost:5091/api/users/login",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"email\": \"JunaidMod@junaid.co.za\",\n  \"password\": \"password\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Login as user",
+          "filename": "Login as user.bru",
+          "seq": 4,
+          "settings": {
+            "encodeUrl": true
+          },
+          "tags": [],
+          "request": {
+            "url": "http://localhost:5091/api/users/login",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"email\": \"Junaid@junaid.co.za\",\n  \"password\": \"password\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Register new user as mod",
+          "filename": "Register new user as mod.bru",
+          "seq": 2,
+          "settings": {
+            "encodeUrl": true
+          },
+          "tags": [],
+          "request": {
+            "url": "http://localhost:5091/api/users/register",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"username\": \"JunaidMod\",\n  \"email\": \"JunaidMod@junaid.co.za\",\n  \"password\": \"password\",\n  \"isModerator\": true\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjVjZDNkZTlmLWMwMWMtNDcwMi04YWE5LTFiNGFhOGZlNTkwMiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJKdW5haWQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJKdW5haWRASnVuYWlkLmNvbSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6Ik1vZGVyYXRvciIsIklzTW9kZXJhdG9yIjoiVHJ1ZSIsImp0aSI6ImFjYTI1N2VkLTBkZDAtNGE0Yi04YzkyLTA2ODMwMTFjZDhmNCIsImlhdCI6MTc1Nzc4NDEwMCwiZXhwIjoxNzU3Nzg3NzAwLCJpc3MiOiJXZWJGb3J1bSIsImF1ZCI6IldlYkZvcnVtIn0.j2c9w1F-QU7vlUC7RdViWw5qbxUYKGDeyh-Sklchvkw"
+              }
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Register new user",
+          "filename": "Register new user.bru",
+          "seq": 1,
+          "settings": {
+            "encodeUrl": true
+          },
+          "tags": [],
+          "request": {
+            "url": "http://localhost:5091/api/users/register",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"username\": \"Junaid\",\n  \"email\": \"Junaid@junaid.co.za\",\n  \"password\": \"password\",\n  \"isModerator\": false\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjVjZDNkZTlmLWMwMWMtNDcwMi04YWE5LTFiNGFhOGZlNTkwMiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJKdW5haWQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJKdW5haWRASnVuYWlkLmNvbSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6Ik1vZGVyYXRvciIsIklzTW9kZXJhdG9yIjoiVHJ1ZSIsImp0aSI6ImFjYTI1N2VkLTBkZDAtNGE0Yi04YzkyLTA2ODMwMTFjZDhmNCIsImlhdCI6MTc1Nzc4NDEwMCwiZXhwIjoxNzU3Nzg3NzAwLCJpc3MiOiJXZWJGb3J1bSIsImF1ZCI6IldlYkZvcnVtIn0.j2c9w1F-QU7vlUC7RdViWw5qbxUYKGDeyh-Sklchvkw"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "folder",
+      "name": "Add Test Data",
+      "filename": "Add Test Data",
+      "seq": 3,
+      "root": {
+        "request": {
+          "auth": {
+            "mode": "bearer",
+            "bearer": {
+              "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImMwZTg3ODYzLTExZWUtNDYzYy1hMmI1LWE0ODFmZTgwMTlkNSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJKdW5haWQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJKdW5haWRAanVuYWlkLmNvLnphIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsInN1YiI6ImMwZTg3ODYzLTExZWUtNDYzYy1hMmI1LWE0ODFmZTgwMTlkNSIsImp0aSI6IjE3NDM4MDJhLWUzOGItNDFiYS05OTA0LTliYWZlNzBjMjU0NCIsImlhdCI6MTc1Nzg2NzI0OSwiZXhwIjoxNzU3ODcwODQ5LCJpc3MiOiJXZWJGb3J1bUlzc3VlciIsImF1ZCI6IldlYkZvcnVtQXVkaWVuY2UifQ.VSLvP4CtZ6lJIocb2BcLJPQVzOy7_tUhd5aI7rBokL8"
+            }
+          }
+        },
+        "meta": {
+          "name": "Add Test Data",
+          "seq": 3
+        }
+      },
+      "items": [
+        {
+          "type": "http",
+          "name": "Add Post 1",
+          "filename": "Add Post 1.bru",
+          "seq": 3,
+          "settings": {
+            "encodeUrl": true
+          },
+          "tags": [],
+          "request": {
+            "url": "http://localhost:5091/api/posts",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"title\": \"Title 1\",\n  \"body\": \"Title 1\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Add Post 2",
+          "filename": "Add Post 2.bru",
+          "seq": 4,
+          "settings": {
+            "encodeUrl": true
+          },
+          "tags": [],
+          "request": {
+            "url": "http://localhost:5091/api/posts",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"title\": \"Title 2\",\n  \"body\": \"Title 2\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Register new user",
+          "filename": "Register new user.bru",
+          "seq": 1,
+          "settings": {
+            "encodeUrl": true
+          },
+          "tags": [],
+          "request": {
+            "url": "http://localhost:5091/api/users/register",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"username\": \"Junaid\",\n  \"email\": \"Junaid@junaid.co.za\",\n  \"password\": \"password\",\n  \"isModerator\": false\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjVjZDNkZTlmLWMwMWMtNDcwMi04YWE5LTFiNGFhOGZlNTkwMiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJKdW5haWQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJKdW5haWRASnVuYWlkLmNvbSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6Ik1vZGVyYXRvciIsIklzTW9kZXJhdG9yIjoiVHJ1ZSIsImp0aSI6ImFjYTI1N2VkLTBkZDAtNGE0Yi04YzkyLTA2ODMwMTFjZDhmNCIsImlhdCI6MTc1Nzc4NDEwMCwiZXhwIjoxNzU3Nzg3NzAwLCJpc3MiOiJXZWJGb3J1bSIsImF1ZCI6IldlYkZvcnVtIn0.j2c9w1F-QU7vlUC7RdViWw5qbxUYKGDeyh-Sklchvkw"
+              }
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Register new mod",
+          "filename": "Register new mod.bru",
+          "seq": 2,
+          "settings": {
+            "encodeUrl": true
+          },
+          "tags": [],
+          "request": {
+            "url": "http://localhost:5091/api/users/register",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"username\": \"JunaidMod\",\n  \"email\": \"JunaidMod@junaid.co.za\",\n  \"password\": \"password\",\n  \"isModerator\": true\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjVjZDNkZTlmLWMwMWMtNDcwMi04YWE5LTFiNGFhOGZlNTkwMiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJKdW5haWQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJKdW5haWRASnVuYWlkLmNvbSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6Ik1vZGVyYXRvciIsIklzTW9kZXJhdG9yIjoiVHJ1ZSIsImp0aSI6ImFjYTI1N2VkLTBkZDAtNGE0Yi04YzkyLTA2ODMwMTFjZDhmNCIsImlhdCI6MTc1Nzc4NDEwMCwiZXhwIjoxNzU3Nzg3NzAwLCJpc3MiOiJXZWJGb3J1bSIsImF1ZCI6IldlYkZvcnVtIn0.j2c9w1F-QU7vlUC7RdViWw5qbxUYKGDeyh-Sklchvkw"
+              }
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Add Post 3",
+          "filename": "Add Post 3.bru",
+          "seq": 5,
+          "settings": {
+            "encodeUrl": true
+          },
+          "tags": [],
+          "request": {
+            "url": "http://localhost:5091/api/posts",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"title\": \"Title 3\",\n  \"body\": \"Title 3\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Add Post 4",
+          "filename": "Add Post 4.bru",
+          "seq": 6,
+          "settings": {
+            "encodeUrl": true
+          },
+          "tags": [],
+          "request": {
+            "url": "http://localhost:5091/api/posts",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"title\": \"Title 4\",\n  \"body\": \"Title 4\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Add comment to post 1",
+          "filename": "Add comment to post 1.bru",
+          "seq": 7,
+          "settings": {
+            "encodeUrl": true
+          },
+          "tags": [],
+          "request": {
+            "url": "http://localhost:5091/api/posts/c306cb53-0b07-4464-ba5d-923602b63f0c/comments",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"body\": \"commentbody\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Add tag to post 2",
+          "filename": "Add tag to post 2.bru",
+          "seq": 8,
+          "settings": {
+            "encodeUrl": true
+          },
+          "tags": [],
+          "request": {
+            "url": "http://localhost:5091/api/posts/6f3bbceb-cfa1-46f0-b1c7-9c805ab79fb9/tags",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"tagName\": \"tagname2\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Add like to post 3",
+          "filename": "Add like to post 3.bru",
+          "seq": 9,
+          "settings": {
+            "encodeUrl": true
+          },
+          "tags": [],
+          "request": {
+            "url": "http://localhost:5091/api/posts/d5d8dac3-8f1d-4001-b3ec-6cecf6561768/likes",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "environments": [],
+  "brunoConfig": {
+    "version": "1",
+    "name": "WebForum",
+    "type": "collection",
+    "ignore": [
+      "node_modules",
+      ".git"
+    ],
+    "size": 0.00543975830078125,
+    "filesCount": 15
+  }
+}

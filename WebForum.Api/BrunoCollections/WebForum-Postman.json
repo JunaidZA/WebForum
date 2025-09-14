@@ -1,0 +1,838 @@
+{
+  "info": {
+    "name": "WebForum",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Posts",
+      "item": [
+        {
+          "name": "Add Comment",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:5091/api/posts/03c82bd4-00f7-4cc0-8e79-ddf89d82dbd8/comments",
+              "protocol": "http",
+              "host": [
+                "localhost:5091"
+              ],
+              "path": [
+                "api",
+                "posts",
+                "03c82bd4-00f7-4cc0-8e79-ddf89d82dbd8",
+                "comments"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"body\": \"commentbody\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Add Like",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:5091/api/posts/2ee80ff7-5f5e-4a38-91f2-3a9a29b26d5f/likes",
+              "protocol": "http",
+              "host": [
+                "localhost:5091"
+              ],
+              "path": [
+                "api",
+                "posts",
+                "2ee80ff7-5f5e-4a38-91f2-3a9a29b26d5f",
+                "likes"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "Add Post",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:5091/api/posts",
+              "protocol": "http",
+              "host": [
+                "localhost:5091"
+              ],
+              "path": [
+                "api",
+                "posts"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"sadasd1\",\n  \"body\": \"stasdasdasring2\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Add Tag",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:5091/api/posts/2ee80ff7-5f5e-4a38-91f2-3a9a29b26d5f/tags",
+              "protocol": "http",
+              "host": [
+                "localhost:5091"
+              ],
+              "path": [
+                "api",
+                "posts",
+                "2ee80ff7-5f5e-4a38-91f2-3a9a29b26d5f",
+                "tags"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tagName\": \"tagname2\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Posts with date filter",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:5091/api/posts?fromDate=2025-09-12&toDate=2025-09-14",
+              "protocol": "http",
+              "host": [
+                "localhost:5091"
+              ],
+              "path": [
+                "api",
+                "posts"
+              ],
+              "query": [
+                {
+                  "key": "fromDate",
+                  "value": "2025-09-12"
+                },
+                {
+                  "key": "toDate",
+                  "value": "2025-09-14"
+                }
+              ],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "Posts with filter",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:5091/api/posts?page=1&pageSize=10&sortBy=Likes&sortDirection=Asc&author=MOD",
+              "protocol": "http",
+              "host": [
+                "localhost:5091"
+              ],
+              "path": [
+                "api",
+                "posts"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "10"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "Likes"
+                },
+                {
+                  "key": "sortDirection",
+                  "value": "Asc"
+                },
+                {
+                  "key": "author",
+                  "value": "MOD"
+                }
+              ],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "Posts with paging",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:5091/api/posts?page=1&pageSize=2",
+              "protocol": "http",
+              "host": [
+                "localhost:5091"
+              ],
+              "path": [
+                "api",
+                "posts"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "2"
+                }
+              ],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "Posts",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:5091/api/posts",
+              "protocol": "http",
+              "host": [
+                "localhost:5091"
+              ],
+              "path": [
+                "api",
+                "posts"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "Unlike Post",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:5091/api/posts/58953366-b3a7-4f80-9a1f-cde63fc6f58b/likes",
+              "protocol": "http",
+              "host": [
+                "localhost:5091"
+              ],
+              "path": [
+                "api",
+                "posts",
+                "58953366-b3a7-4f80-9a1f-cde63fc6f58b",
+                "likes"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "Posts with tag filter",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:5091/api/posts?page=1&pageSize=10&sortBy=Likes&sortDirection=Asc",
+              "protocol": "http",
+              "host": [
+                "localhost:5091"
+              ],
+              "path": [
+                "api",
+                "posts"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "10"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "Likes"
+                },
+                {
+                  "key": "sortDirection",
+                  "value": "Asc"
+                },
+                {
+                  "key": "Tags",
+                  "value": "TAGname2"
+                },
+                {
+                  "key": "author",
+                  "value": "MOD"
+                }
+              ],
+              "variable": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Login as moderator",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:5091/api/users/login",
+              "protocol": "http",
+              "host": [
+                "localhost:5091"
+              ],
+              "path": [
+                "api",
+                "users",
+                "login"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"JunaidMod@junaid.co.za\",\n  \"password\": \"password\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Login as user",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:5091/api/users/login",
+              "protocol": "http",
+              "host": [
+                "localhost:5091"
+              ],
+              "path": [
+                "api",
+                "users",
+                "login"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"Junaid@junaid.co.za\",\n  \"password\": \"password\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Register new user as mod",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjVjZDNkZTlmLWMwMWMtNDcwMi04YWE5LTFiNGFhOGZlNTkwMiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJKdW5haWQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJKdW5haWRASnVuYWlkLmNvbSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6Ik1vZGVyYXRvciIsIklzTW9kZXJhdG9yIjoiVHJ1ZSIsImp0aSI6ImFjYTI1N2VkLTBkZDAtNGE0Yi04YzkyLTA2ODMwMTFjZDhmNCIsImlhdCI6MTc1Nzc4NDEwMCwiZXhwIjoxNzU3Nzg3NzAwLCJpc3MiOiJXZWJGb3J1bSIsImF1ZCI6IldlYkZvcnVtIn0.j2c9w1F-QU7vlUC7RdViWw5qbxUYKGDeyh-Sklchvkw",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:5091/api/users/register",
+              "protocol": "http",
+              "host": [
+                "localhost:5091"
+              ],
+              "path": [
+                "api",
+                "users",
+                "register"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"JunaidMod\",\n  \"email\": \"JunaidMod@junaid.co.za\",\n  \"password\": \"password\",\n  \"isModerator\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Register new user",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjVjZDNkZTlmLWMwMWMtNDcwMi04YWE5LTFiNGFhOGZlNTkwMiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJKdW5haWQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJKdW5haWRASnVuYWlkLmNvbSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6Ik1vZGVyYXRvciIsIklzTW9kZXJhdG9yIjoiVHJ1ZSIsImp0aSI6ImFjYTI1N2VkLTBkZDAtNGE0Yi04YzkyLTA2ODMwMTFjZDhmNCIsImlhdCI6MTc1Nzc4NDEwMCwiZXhwIjoxNzU3Nzg3NzAwLCJpc3MiOiJXZWJGb3J1bSIsImF1ZCI6IldlYkZvcnVtIn0.j2c9w1F-QU7vlUC7RdViWw5qbxUYKGDeyh-Sklchvkw",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:5091/api/users/register",
+              "protocol": "http",
+              "host": [
+                "localhost:5091"
+              ],
+              "path": [
+                "api",
+                "users",
+                "register"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"Junaid\",\n  \"email\": \"Junaid@junaid.co.za\",\n  \"password\": \"password\",\n  \"isModerator\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Add Test Data",
+      "item": [
+        {
+          "name": "Add Post 1",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:5091/api/posts",
+              "protocol": "http",
+              "host": [
+                "localhost:5091"
+              ],
+              "path": [
+                "api",
+                "posts"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Title 1\",\n  \"body\": \"Title 1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Add Post 2",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:5091/api/posts",
+              "protocol": "http",
+              "host": [
+                "localhost:5091"
+              ],
+              "path": [
+                "api",
+                "posts"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Title 2\",\n  \"body\": \"Title 2\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Register new user",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjVjZDNkZTlmLWMwMWMtNDcwMi04YWE5LTFiNGFhOGZlNTkwMiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJKdW5haWQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJKdW5haWRASnVuYWlkLmNvbSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6Ik1vZGVyYXRvciIsIklzTW9kZXJhdG9yIjoiVHJ1ZSIsImp0aSI6ImFjYTI1N2VkLTBkZDAtNGE0Yi04YzkyLTA2ODMwMTFjZDhmNCIsImlhdCI6MTc1Nzc4NDEwMCwiZXhwIjoxNzU3Nzg3NzAwLCJpc3MiOiJXZWJGb3J1bSIsImF1ZCI6IldlYkZvcnVtIn0.j2c9w1F-QU7vlUC7RdViWw5qbxUYKGDeyh-Sklchvkw",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:5091/api/users/register",
+              "protocol": "http",
+              "host": [
+                "localhost:5091"
+              ],
+              "path": [
+                "api",
+                "users",
+                "register"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"Junaid\",\n  \"email\": \"Junaid@junaid.co.za\",\n  \"password\": \"password\",\n  \"isModerator\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Register new mod",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjVjZDNkZTlmLWMwMWMtNDcwMi04YWE5LTFiNGFhOGZlNTkwMiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJKdW5haWQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJKdW5haWRASnVuYWlkLmNvbSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6Ik1vZGVyYXRvciIsIklzTW9kZXJhdG9yIjoiVHJ1ZSIsImp0aSI6ImFjYTI1N2VkLTBkZDAtNGE0Yi04YzkyLTA2ODMwMTFjZDhmNCIsImlhdCI6MTc1Nzc4NDEwMCwiZXhwIjoxNzU3Nzg3NzAwLCJpc3MiOiJXZWJGb3J1bSIsImF1ZCI6IldlYkZvcnVtIn0.j2c9w1F-QU7vlUC7RdViWw5qbxUYKGDeyh-Sklchvkw",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:5091/api/users/register",
+              "protocol": "http",
+              "host": [
+                "localhost:5091"
+              ],
+              "path": [
+                "api",
+                "users",
+                "register"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"JunaidMod\",\n  \"email\": \"JunaidMod@junaid.co.za\",\n  \"password\": \"password\",\n  \"isModerator\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Add Post 3",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:5091/api/posts",
+              "protocol": "http",
+              "host": [
+                "localhost:5091"
+              ],
+              "path": [
+                "api",
+                "posts"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Title 3\",\n  \"body\": \"Title 3\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Add Post 4",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:5091/api/posts",
+              "protocol": "http",
+              "host": [
+                "localhost:5091"
+              ],
+              "path": [
+                "api",
+                "posts"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Title 4\",\n  \"body\": \"Title 4\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Add comment to post 1",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:5091/api/posts/c306cb53-0b07-4464-ba5d-923602b63f0c/comments",
+              "protocol": "http",
+              "host": [
+                "localhost:5091"
+              ],
+              "path": [
+                "api",
+                "posts",
+                "c306cb53-0b07-4464-ba5d-923602b63f0c",
+                "comments"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"body\": \"commentbody\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Add tag to post 2",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:5091/api/posts/6f3bbceb-cfa1-46f0-b1c7-9c805ab79fb9/tags",
+              "protocol": "http",
+              "host": [
+                "localhost:5091"
+              ],
+              "path": [
+                "api",
+                "posts",
+                "6f3bbceb-cfa1-46f0-b1c7-9c805ab79fb9",
+                "tags"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tagName\": \"tagname2\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Add like to post 3",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:5091/api/posts/d5d8dac3-8f1d-4001-b3ec-6cecf6561768/likes",
+              "protocol": "http",
+              "host": [
+                "localhost:5091"
+              ],
+              "path": [
+                "api",
+                "posts",
+                "d5d8dac3-8f1d-4001-b3ec-6cecf6561768",
+                "likes"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": []
+}

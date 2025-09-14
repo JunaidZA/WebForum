@@ -1,6 +1,6 @@
-@WebForum.Api_HostAddress = https://localhost:7293
+@WebForum.Api_HostAddress = http://localhost:5091
 
-GET {{WebForum.Api_HostAddress}}/posts/
+GET {{WebForum.Api_HostAddress}}/api/posts/
 Accept: application/json
 
 ###
